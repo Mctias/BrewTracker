@@ -15,7 +15,7 @@ namespace BrewTracker.ViewModels
         }
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsNotBusy)]
+        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         bool isBusy;
 
         public bool IsNotBusy => !IsBusy;
