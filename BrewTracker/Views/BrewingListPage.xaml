@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BrewTracker.Views.BrewingListPage"
+             xmlns:model="clr-namespace:BrewTracker.Models"
+             Title="Brewing">
+    <CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:Brew}">
+                <model:Brew Name="Öl"
+                            Description="Smakar gött"
+                            Image="https://www.247kiosk.se/media/catalog/product/cache/c561b8573ac0604add5d84d8dc1005f2/0/3/038069800_1626936259_01_01_0020_1_88b2.jpg"/>
+                <model:Brew Name="Cider"
+                            Description="Smakar också ok"
+                            Image="https://www.burkbolaget.com/4361-thickbox_default/kopparberg-pear-cider-45-vol-24-x-033-ltr.jpg"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Brew">
+                <HorizontalStackLayout>
+                    <Image Source="{Binding Image}"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           Aspect="AspectFill"/>
+                    <VerticalStackLayout Padding="10" Spacing="4">
+                        <Label Text="{Binding Name}"
+                            FontSize="24"/>
+                        <Label Text="{Binding Description}"
+                           FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
