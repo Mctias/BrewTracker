@@ -1,4 +1,5 @@
-﻿using BrewTracker.ViewModels;
+﻿using BrewTracker.Database;
+using BrewTracker.ViewModels;
 using BrewTracker.Views;
 
 namespace BrewTracker;
@@ -23,9 +24,14 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<BrewingListPage>();
 		builder.Services.AddSingleton<FinishedListPage>();
+
 		builder.Services.AddSingleton<AddBrewPage>();
+		builder.Services.AddSingleton<AddBrewViewModel>();
+
 		builder.Services.AddTransient<BrewDetailsPage>();
 		builder.Services.AddTransient<BrewDetailsViewModel>();
+
+		builder.Services.AddSingleton<BrewDatabase>();
 
         return builder.Build();
 	}
