@@ -6,7 +6,14 @@
              xmlns:viewmodel="clr-namespace:BrewTracker.ViewModels"
              x:DataType="viewmodel:BrewingListViewModel"
              Title="Brewing">
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="ADD"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding GoToAddBrewCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
           RowDefinitions="*, Auto"

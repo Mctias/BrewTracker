@@ -27,7 +27,6 @@ public static class MauiProgram
 		builder.Services.AddTransient<BrewDetailsPage>();
 		builder.Services.AddTransient<BrewDetailsViewModel>();
 
-
-		return builder.Build();
+        return builder.Build();
 	}
 }

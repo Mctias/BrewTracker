@@ -2,11 +2,127 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BrewTracker.Views.AddBrewPage"
-             Title="AddBrewPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Add a brew!"
+             Shell.TabBarIsVisible="False">
+    
+    <VerticalStackLayout Padding="10"
+                         Spacing="10"
+                         VerticalOptions="FillAndExpand">
+        <Label Text="Add a brew to keep track of! You can add any type of brew you want"
+               FontSize="Medium"/>
+        <ScrollView VerticalOptions="StartAndExpand">
+            <Grid ColumnDefinitions="Auto,*"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnSpacing="10">
+                <Label Text="Name*:"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   VerticalOptions="Center"/>
+                <Entry Grid.Column="1"
+                   Grid.Row="0"
+                   Placeholder="Name"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   PlaceholderColor="Gray"/>
+
+                <Label Text="Type*:"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   VerticalOptions="Center"/>
+                <Entry Grid.Column="1"
+                   Grid.Row="1"
+                   Placeholder="Beer, cider, wine..."
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   PlaceholderColor="Gray"/>
+
+
+                <Label Text="Subtype:"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   VerticalOptions="Center"/>
+                <Entry Grid.Column="1"
+                   Grid.Row="2"
+                   Placeholder="Lager, IPA, Apple, Merlot..."
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   PlaceholderColor="Gray"/>
+
+                <Label Text="Original Gravity:"
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   VerticalOptions="Center"/>
+                <Entry Grid.Column="1"
+                   Grid.Row="3"
+                   Placeholder="Gravity"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   PlaceholderColor="Gray"/>
+
+                <Label Text="Litres:"
+                   Grid.Column="0"
+                   Grid.Row="4"
+                   VerticalOptions="Center"/>
+                <Entry Grid.Column="1"
+                   Grid.Row="4"
+                   Placeholder="Litres"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   PlaceholderColor="Gray"/>
+
+                <Label Text="Start date*:"
+                   Grid.Column="0"
+                   Grid.Row="5"
+                   VerticalOptions="Center"/>
+                <DatePicker Grid.Column="1"
+                   Grid.Row="5"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   Date="{Binding StartDate}"/>
+
+                <Label Text="Bottling date*:"
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   VerticalOptions="Center"/>
+                <DatePicker Grid.Column="1"
+                   Grid.Row="6"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   Date="{Binding BottlingDate}"/>
+
+                <Label Text="Finished date*:"
+                   Grid.Column="0"
+                   Grid.Row="7"
+                   VerticalOptions="Center"/>
+                <DatePicker Grid.Column="1"
+                   Grid.Row="7"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   Date="{Binding FinishedDate}"/>
+
+                <Label Text="Notes:"
+                   Grid.Column="0"
+                   Grid.Row="8"
+                       VerticalTextAlignment="Start"/>
+                <Editor Grid.Column="1"
+                        Grid.Row="8"
+                        Grid.RowSpan="3"
+                        TextColor="Black"
+                        HeightRequest="250"
+                        Placeholder="Notes"
+                        VerticalTextAlignment="Start"/>
+            </Grid>
+        </ScrollView>
+        <StackLayout VerticalOptions="End">
+
+            <Button Text="Done!"/>
+        </StackLayout>
+        
+
     </VerticalStackLayout>
 </ContentPage>
