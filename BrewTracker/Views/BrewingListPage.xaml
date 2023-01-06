@@ -3,33 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BrewTracker.Views.BrewingListPage"
              xmlns:model="clr-namespace:BrewTracker.Models"
+             xmlns:viewmodel="clr-namespace:BrewTracker.ViewModels"
+             x:DataType="viewmodel:BrewingListViewModel"
              Title="Brewing">
-    <CollectionView>
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type model:Brew}">
-                <model:Brew Name="Öl"
-                            Description="Smakar gött"
-                            Image="https://www.247kiosk.se/media/catalog/product/cache/c561b8573ac0604add5d84d8dc1005f2/0/3/038069800_1626936259_01_01_0020_1_88b2.jpg"/>
-                <model:Brew Name="Cider"
-                            Description="Smakar också ok"
-                            Image="https://www.burkbolaget.com/4361-thickbox_default/kopparberg-pear-cider-45-vol-24-x-033-ltr.jpg"/>
-            </x:Array>
-        </CollectionView.ItemsSource>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:Brew">
-                <HorizontalStackLayout>
-                    <Image Source="{Binding Image}"
-                           HeightRequest="100"
-                           WidthRequest="100"
-                           Aspect="AspectFill"/>
-                    <VerticalStackLayout Padding="10" Spacing="4">
-                        <Label Text="{Binding Name}"
-                            FontSize="24"/>
-                        <Label Text="{Binding Description}"
-                           FontSize="12"/>
-                    </VerticalStackLayout>
-                </HorizontalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*, Auto"
+          RowSpacing="0">
+
+        <CollectionView Grid.ColumnSpan="2"
+                        ItemsSource="{Binding BrewingList}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Brew">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"
+                               Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BrewingListViewModel}}, Path=GoToBrewCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0"
+                                  ColumnDefinitions="125, *">
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding Image}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="10"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="16"/>
+                                    <Label Text="{Binding Description}"
+                                           FontSize="12"/>
+                                    <Label Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BrewingListViewModel}}, Path=DaysToBottling, StringFormat='Days to bottling: {0}'}"
+                                           FontSize="10"/>
+                                    <Label Text="{Binding Description, StringFormat='Days to finished 12'}"
+                                           FontSize="10"
+                                           IsVisible="{Binding HasBeenBottled}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+    </Grid>
+    
 </ContentPage>

@@ -8,11 +8,13 @@
 
     <TabBar>
         <ShellContent Title="Brewing"
-                     ContentTemplate="{DataTemplate local:BrewingListPage}"
-                      Icon="brewing.png"/>
+                      ContentTemplate="{DataTemplate local:BrewingListPage}"
+                      Icon="brewing.png"
+                      Route="BrewingListPage"/>
         <ShellContent Title="Finished"
                      ContentTemplate="{DataTemplate local:FinishedListPage}"
-                     Icon="finished.png"/>
+                     Icon="finished.png"
+                      Route="FinishedList"/>
     </TabBar>
     
 

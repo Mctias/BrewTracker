@@ -12,7 +12,10 @@ namespace BrewTracker.Models
         public string Description { get; set; }
         public string Type { get; set; }
         public string StartDate { get; set; }
+        public string BottlingDate { get; set; }
         public string EndDate { get; set; }
+        public string Notes { get; set; }
+        public bool HasBeenBottled { get; set; }
         public string Image { get; set; }
 
     }
