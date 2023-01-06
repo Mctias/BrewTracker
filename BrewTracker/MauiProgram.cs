@@ -1,4 +1,7 @@
-﻿namespace BrewTracker;
+﻿using BrewTracker.ViewModels;
+using BrewTracker.Views;
+
+namespace BrewTracker;
 
 public static class MauiProgram
 {
@@ -13,6 +16,17 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+		builder.Services.AddSingleton<BrewingListViewModel>();
+		builder.Services.AddSingleton<FinishedListViewModel>();
+		//builder.Services.AddSingleton<FinishedListViewModel>();
+		//builder.Services.AddSingleton<FinishedListViewModel>();
+
+		builder.Services.AddSingleton<BrewingListPage>();
+		builder.Services.AddSingleton<FinishedListPage>();
+		builder.Services.AddSingleton<AddBrewPage>();
+		builder.Services.AddTransient<BrewDetailsPage>();
+		builder.Services.AddTransient<BrewDetailsViewModel>();
+
+        return builder.Build();
 	}
 }

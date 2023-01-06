@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BrewTracker.Views.BrewingListPage"
+             xmlns:model="clr-namespace:BrewTracker.Models"
+             xmlns:viewmodel="clr-namespace:BrewTracker.ViewModels"
+             x:DataType="viewmodel:BrewingListViewModel"
+             Title="Brewing">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="ADD"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding GoToAddBrewCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*, Auto"
+          RowSpacing="0">
+
+        <CollectionView Grid.ColumnSpan="2"
+                        ItemsSource="{Binding BrewingList}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Brew">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"
+                               Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BrewingListViewModel}}, Path=GoToBrewCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0"
+                                  ColumnDefinitions="125, *">
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding Image}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="10"
+                                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="16"/>
+                                    <Label Text="{Binding Description}"
+                                           FontSize="12"/>
+                                    <Label Text="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BrewingListViewModel}}, Path=DaysToBottling, StringFormat='Days to bottling: {0}'}"
+                                           FontSize="10"/>
+                                    <Label Text="{Binding Description, StringFormat='Days to finished 12'}"
+                                           FontSize="10"
+                                           IsVisible="{Binding HasBeenBottled}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+    </Grid>
+    
+</ContentPage>
