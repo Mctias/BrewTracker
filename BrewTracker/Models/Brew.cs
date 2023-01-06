@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,20 @@ namespace BrewTracker.Models
 {
     public class Brew
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
-        public string StartDate { get; set; }
-        public string BottlingDate { get; set; }
-        public string EndDate { get; set; }
+        public string Subtype { get; set; }
+        public int OriginalGravity { get; set; }    
+        public int Litres { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime BottlingDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string Notes { get; set; }
         public bool HasBeenBottled { get; set; }
-        public string Image { get; set; }
-
+        public bool Done { get; set; }
+        public string Image { get; set; } = "https://img.freepik.com/free-vector/six-beers-drinks-set-icons_603843-1939.jpg?w=1380&t=st=1673020078~exp=1673020678~hmac=f20d149b2e5adf4b3016e123b8da3a46da5b84f0baac810dab80cc343d940e62";
     }
 }

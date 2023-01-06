@@ -3,21 +3,43 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using BrewTracker.Views;
+using BrewTracker.Database;
 
 namespace BrewTracker.ViewModels;
 
 public partial class BrewingListViewModel : BaseViewModel
 {
-	public ObservableCollection<Brew> BrewingList { get; set; }
+    public ObservableCollection<Brew> BrewingList { get; } = new();
 
-    public BrewingListViewModel()
+    BrewDatabase brewDatabase;
+
+    public BrewingListViewModel(BrewDatabase brewDatabase)
     {
-        BrewingList = new ObservableCollection<Brew>
+        this.brewDatabase = brewDatabase;
+        PopulateBrewList();
+    }
+
+    [RelayCommand]
+    public async void PopulateBrewList()
+    {
+        BrewingList.Clear();
+
+        try
         {
-            new Brew { Name = "Öl", Description = "Smakar gott", Image = "https://driveinbottleshop.dk/wp-content/uploads/2021/01/9764G-155723051749-600x600.png.webp" },
-            new Brew { Name = "Cider", Description = "Smakar också ok", Image = "https://www.burkbolaget.com/4361-thickbox_default/kopparberg-pear-cider-45-vol-24-x-033-ltr.jpg" },
-            new Brew { Name = "Annan öl", Description = "Smakar meh", Image = "https://cdn.abicart.com/shop/11011/art11/h2703/183242703-origpic-9e4af1.jpg" }
-        };
+            var dbBrews = await brewDatabase.GetBrewsAsync();
+            foreach (var brew in dbBrews)
+            {
+                BrewingList.Add(brew);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Error", "Something went wrong when loading your brews", "OK");
+        }
+        finally
+        {
+            IsRefreshing = false;
+        }
     }
 
     [RelayCommand]
@@ -40,7 +62,9 @@ public partial class BrewingListViewModel : BaseViewModel
         await Shell.Current.GoToAsync($"{nameof(AddBrewPage)}", true);
     }
 
-
     [ObservableProperty]
     int daysToBottling = 5;
+
+    [ObservableProperty]
+    bool isRefreshing = false;
 }

@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BrewTracker.Views.AddBrewPage"
+             xmlns:viewmodel="clr-namespace:BrewTracker.ViewModels"
+             x:DataType="viewmodel:AddBrewViewModel"
              Title="Add a brew!"
              Shell.TabBarIsVisible="False">
     
@@ -12,7 +14,7 @@
                FontSize="Medium"/>
         <ScrollView VerticalOptions="StartAndExpand">
             <Grid ColumnDefinitions="Auto,*"
-              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
               ColumnSpacing="10">
                 <Label Text="Name*:"
                    Grid.Column="0"
@@ -21,6 +23,7 @@
                 <Entry Grid.Column="1"
                    Grid.Row="0"
                    Placeholder="Name"
+                   Text="{Binding Name}"
                    TextColor="Black"
                    VerticalOptions="Center"
                    VerticalTextAlignment="Center"
@@ -33,6 +36,7 @@
                 <Entry Grid.Column="1"
                    Grid.Row="1"
                    Placeholder="Beer, cider, wine..."
+                   Text="{Binding Type}"
                    TextColor="Black"
                    VerticalOptions="Center"
                    VerticalTextAlignment="Center"
@@ -46,6 +50,7 @@
                 <Entry Grid.Column="1"
                    Grid.Row="2"
                    Placeholder="Lager, IPA, Apple, Merlot..."
+                   Text="{Binding Subtype}"
                    TextColor="Black"
                    VerticalOptions="Center"
                    VerticalTextAlignment="Center"
@@ -58,6 +63,7 @@
                 <Entry Grid.Column="1"
                    Grid.Row="3"
                    Placeholder="Gravity"
+                   Text="{Binding OriginalGravity}"
                    TextColor="Black"
                    VerticalOptions="Center"
                    VerticalTextAlignment="Center"
@@ -70,6 +76,7 @@
                 <Entry Grid.Column="1"
                    Grid.Row="4"
                    Placeholder="Litres"
+                   Text="{Binding Litres}"
                    TextColor="Black"
                    VerticalOptions="Center"
                    VerticalTextAlignment="Center"
@@ -103,7 +110,7 @@
                    Grid.Row="7"
                    TextColor="Black"
                    VerticalOptions="Center"
-                   Date="{Binding FinishedDate}"/>
+                   Date="{Binding EndDate}"/>
 
                 <Label Text="Notes:"
                    Grid.Column="0"
@@ -111,16 +118,18 @@
                        VerticalTextAlignment="Start"/>
                 <Editor Grid.Column="1"
                         Grid.Row="8"
-                        Grid.RowSpan="3"
                         TextColor="Black"
-                        HeightRequest="250"
+                        HeightRequest="160"
                         Placeholder="Notes"
+                        Text="{Binding Notes}"
                         VerticalTextAlignment="Start"/>
             </Grid>
         </ScrollView>
-        <StackLayout VerticalOptions="End">
-
-            <Button Text="Done!"/>
+        <StackLayout VerticalOptions="End"
+                     Margin="8">
+            <Button Text="Done!"
+                    HeightRequest="54"
+                    Command="{Binding AddBrewAsyncCommand}"/>
         </StackLayout>
         
 

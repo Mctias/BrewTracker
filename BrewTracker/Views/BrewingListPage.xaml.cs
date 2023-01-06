@@ -4,14 +4,14 @@ namespace BrewTracker.Views;
 
 public partial class BrewingListPage : ContentPage
 {
-	public BrewingListPage(BrewingListViewModel viewModel)
+	public BrewingListPage(BrewingListViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = viewModel;
+		BindingContext = vm;
 	}
 
-    private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
-		Console.WriteLine("Heej");
+        base.OnNavigatedTo(args);
     }
 }
