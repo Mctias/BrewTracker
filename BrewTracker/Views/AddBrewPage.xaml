@@ -69,13 +69,14 @@
                    VerticalTextAlignment="Center"
                    PlaceholderColor="Gray"/>
 
-                <Label Text="Litres:"
+                <Label Text="Litres*:"
                    Grid.Column="0"
                    Grid.Row="4"
                    VerticalOptions="Center"/>
                 <Entry Grid.Column="1"
                    Grid.Row="4"
                    Placeholder="Litres"
+                   Keyboard="Numeric"
                    Text="{Binding Litres}"
                    TextColor="Black"
                    VerticalOptions="Center"

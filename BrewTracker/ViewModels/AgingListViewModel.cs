@@ -17,7 +17,6 @@ namespace BrewTracker.ViewModels
         public AgingListViewModel(BrewDatabase brewDatabase)
         {
             this.brewDatabase = brewDatabase;
-            PopulateBrewList();
         }
 
         [RelayCommand]
