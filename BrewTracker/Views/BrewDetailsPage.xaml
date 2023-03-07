@@ -5,6 +5,12 @@
              xmlns:viewmodel="clr-namespace:BrewTracker.ViewModels"
              x:DataType="viewmodel:BrewDetailsViewModel"
              Title="{Binding Brew.Name}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="EDIT"
+                 Order="Primary"
+                 Priority="0"/>
+    </ContentPage.ToolbarItems>
 
     <ScrollView>
         <VerticalStackLayout>
@@ -26,21 +32,25 @@
                 </Frame>
             </Grid>
 
-            <VerticalStackLayout Padding="10"
+            <VerticalStackLayout Padding="15"
                                  Spacing="10">
                 <Label Text="{Binding Brew.Name}"
                        FontSize="Large"/>
-                <Label Text="{Binding Brew.Description}"
+                <Label Text="{Binding Brew.Type}"
+                       FontSize="Small"/>
+                <Label Text="{Binding Brew.Subtype}"
                        FontSize="Small"/>
                 <Label Text="{Binding Brew.StartDate, StringFormat='Started brewing: {0}'}"
                        FontSize="Small"/>
-                <Label Text="{Binding Brew.StartDate, StringFormat='Days to bottling: 5'}"
+                <Label Text="{Binding Brew.DaysFermenting, StringFormat='Days fermenting: {0}'}"
                        FontSize="Small"/>
-                <Label Text="{Binding Brew.EndDate, StringFormat='Days to drinking: 12'}"
-                       FontSize="Small"/>
-                <Label Text="{Binding Brew.EndDate, StringFormat='Notes: Bubblar på...'}"
+                <Label Text="{Binding Brew.Notes, StringFormat='Notes: {0}'}"
                        FontSize="Small"/>
             </VerticalStackLayout>
+            <Button Margin="8"
+                    Text="Bottle!"
+                    HeightRequest="54"
+                    Command="{Binding BottleBrewAsyncCommand}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

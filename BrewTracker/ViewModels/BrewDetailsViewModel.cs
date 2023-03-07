@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BrewTracker.Database;
+using BrewTracker.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +12,24 @@ namespace BrewTracker.ViewModels
 
     public partial class BrewDetailsViewModel : BaseViewModel
     {
-        public BrewDetailsViewModel() 
-        { 
+        BrewDatabase brewDatabase;
 
+        public BrewDetailsViewModel(BrewDatabase brewDatabase) 
+        { 
+            this.brewDatabase = brewDatabase;
         }
 
         [ObservableProperty]
         Brew brew;
+
+        [RelayCommand]
+        public async void BottleBrewAsync()
+        {
+            Brew.BottlingDate = DateTime.Today;
+            Brew.BrewingState = BrewingState.Aging;
+            await brewDatabase.SaveBrewAsync(brew);
+            //TODO: Go to BottleBrewPage
+            await Shell.Current.GoToAsync($"//{nameof(AgingListPage)}");
+        }
     }
 }

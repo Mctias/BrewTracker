@@ -45,21 +45,24 @@ namespace BrewTracker.ViewModels
         [ObservableProperty]
         string notes;
 
+        [ObservableProperty]
+        string recipe;
+
         [RelayCommand(CanExecute = nameof(ValidateBrew))]
         public async void AddBrewAsync() 
         {
             IsBusy = true;
             Brew brew = new Brew
             {
-                Name = name,
-                Type = type,
-                Subtype = subtype,
-                OriginalGravity = originalGravity,
-                Litres = litres,
-                StartDate = startDate,
-                BottlingDate = bottlingDate,
-                EndDate = endDate,
-                Notes = notes
+                Name = Name,
+                Type = Type,
+                Subtype = Subtype,
+                OriginalGravity = OriginalGravity,
+                Litres = Litres,
+                StartDate = StartDate,
+                Notes = notes,
+                BrewingState = BrewingState.Fermenting,
+                Recipe = Recipe
             };
             try
             {

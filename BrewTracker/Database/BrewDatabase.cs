@@ -35,16 +35,22 @@ namespace BrewTracker.Database
             return await Database.Table<Brew>().ToListAsync();
         }
 
+        public async Task<List<Brew>> GetFermentingBrewsAsync()
+        {
+            await Init();
+            return await Database.Table<Brew>().Where(b => b.BrewingState == BrewingState.Fermenting).ToListAsync();
+        }
+
         public async Task<List<Brew>> GetFinishedBrewsAsync()
         {
             await Init();
-            return await Database.Table<Brew>().Where(b => b.Done).ToListAsync();
+            return await Database.Table<Brew>().Where(b => b.BrewingState == BrewingState.Done).ToListAsync();
         }
 
         public async Task<List<Brew>> GetBottledBrewsAsync()
         {
             await Init();
-            return await Database.Table<Brew>().Where(b => b.HasBeenBottled).ToListAsync();
+            return await Database.Table<Brew>().Where(b => b.BrewingState == BrewingState.Aging).ToListAsync();
         }
 
         public async Task<int> SaveBrewAsync(Brew brew)

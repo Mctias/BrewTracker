@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BrewTracker.Views.BrewingListPage"
+             x:Class="BrewTracker.Views.AgingListPage"
              xmlns:model="clr-namespace:BrewTracker.Models"
              xmlns:viewmodel="clr-namespace:BrewTracker.ViewModels"
-             x:DataType="viewmodel:BrewingListViewModel"
-             Title="Fermenting">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="ADD"
-                 Order="Primary"
-                 Priority="0"
-                 Command="{Binding GoToAddBrewCommand}"/>
-    </ContentPage.ToolbarItems>
-
+             x:DataType="viewmodel:AgingListViewModel"
+             Title="AgingListPage">
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
           RowDefinitions="*, Auto"
@@ -21,7 +13,7 @@
         <RefreshView Grid.ColumnSpan="2"
                      Command="{Binding PopulateBrewListCommand}"
                      IsRefreshing="{Binding IsRefreshing}">
-            <CollectionView ItemsSource="{Binding BrewingList}"
+            <CollectionView ItemsSource="{Binding AgingList}"
                         SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Brew">
@@ -45,7 +37,7 @@
                                            FontSize="16"/>
                                         <Label Text="{Binding Type}"
                                            FontSize="12"/>
-                                        <Label Text="{Binding DaysFermenting, StringFormat='Days fermenting: {0}'}"
+                                        <Label Text="{Binding DaysAging, StringFormat='Days aging: {0}'}"
                                            FontSize="10"/>
                                         <Label Text="{Binding Litres, StringFormat='{0} Litres'}"
                                            FontSize="10"/>

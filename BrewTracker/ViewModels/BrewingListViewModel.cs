@@ -26,9 +26,10 @@ public partial class BrewingListViewModel : BaseViewModel
 
         try
         {
-            var dbBrews = await brewDatabase.GetBrewsAsync();
+            var dbBrews = await brewDatabase.GetFermentingBrewsAsync();
             foreach (var brew in dbBrews)
             {
+                brew.DaysFermenting = Math.Abs((DateTime.Today - brew.StartDate).TotalDays);
                 BrewingList.Add(brew);
             }
         }
@@ -62,8 +63,6 @@ public partial class BrewingListViewModel : BaseViewModel
         await Shell.Current.GoToAsync($"{nameof(AddBrewPage)}", true);
     }
 
-    [ObservableProperty]
-    int daysToBottling = 5;
 
     [ObservableProperty]
     bool isRefreshing = false;
