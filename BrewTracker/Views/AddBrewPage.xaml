@@ -42,7 +42,6 @@
                    VerticalTextAlignment="Center"
                    PlaceholderColor="Gray"/>
 
-
                 <Label Text="Subtype:"
                    Grid.Column="0"
                    Grid.Row="2"
@@ -63,6 +62,7 @@
                 <Entry Grid.Column="1"
                    Grid.Row="3"
                    Placeholder="Gravity"
+                   Keyboard="Numeric"
                    Text="{Binding OriginalGravity}"
                    TextColor="Black"
                    VerticalOptions="Center"
@@ -118,10 +118,9 @@
                    Grid.Row="7"
                        VerticalTextAlignment="Start"/>
                 <Editor Grid.Column="1"
-                        Grid.ColumnSpan="2"
+                        AutoSize="TextChanges"
                         Grid.Row="7"
                         TextColor="Black"
-                        HeightRequest="160"
                         Placeholder="Notes"
                         Text="{Binding Notes}"
                         VerticalTextAlignment="Start"/>
@@ -131,6 +130,7 @@
                    Grid.Row="8"
                        VerticalTextAlignment="Start"/>
                 <Editor Grid.Column="1"
+                        AutoSize="TextChanges"
                         Grid.Row="8"
                         TextColor="Black"
                         HeightRequest="160"
