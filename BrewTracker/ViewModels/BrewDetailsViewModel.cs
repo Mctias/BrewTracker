@@ -25,7 +25,7 @@ namespace BrewTracker.ViewModels
         [RelayCommand]
         public async void BottleBrewAsync()
         {
-            Brew.BottlingDate = DateTime.Today;
+            Brew.BottlingDate = DateTime.Now;
             Brew.BrewingState = BrewingState.Aging;
             await brewDatabase.SaveBrewAsync(brew);
             //TODO: Go to BottleBrewPage

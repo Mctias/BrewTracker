@@ -50,7 +50,10 @@ namespace BrewTracker.Database
         public async Task<List<Brew>> GetBottledBrewsAsync()
         {
             await Init();
-            return await Database.Table<Brew>().Where(b => b.BrewingState == BrewingState.Aging).ToListAsync();
+            return await Database.Table<Brew>()
+                .Where(b => b.BrewingState == BrewingState.Aging)
+                .OrderByDescending(b => b.BottlingDate)
+                .ToListAsync();
         }
 
         public async Task<int> SaveBrewAsync(Brew brew)

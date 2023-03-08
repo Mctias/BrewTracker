@@ -31,10 +31,11 @@ namespace BrewTracker.ViewModels
         int originalGravity;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(AddBrewAsyncCommand))]
         int litres;
 
         [ObservableProperty]
-        DateTime startDate = DateTime.Today;
+        DateTime startDate = DateTime.Now;
 
         [ObservableProperty]
         DateTime bottlingDate = DateTime.Today.AddDays(7) ;
@@ -84,14 +85,14 @@ namespace BrewTracker.ViewModels
             Subtype = string.Empty;
             Litres = 0;
             OriginalGravity = 0;
-            StartDate = DateTime.Today;
+            StartDate = DateTime.Now;
             BottlingDate = DateTime.Today.AddDays(7);
             EndDate = DateTime.Today.AddDays(14);
         }
 
         private bool ValidateBrew()
         {
-            if(name == null || type == null)
+            if(name == null || type == null || litres == 0)
             {
                 return false;
             }

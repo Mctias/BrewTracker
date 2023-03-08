@@ -16,7 +16,6 @@ public partial class BrewingListViewModel : BaseViewModel
     public BrewingListViewModel(BrewDatabase brewDatabase)
     {
         this.brewDatabase = brewDatabase;
-        PopulateBrewList();
     }
 
     [RelayCommand]
@@ -29,7 +28,7 @@ public partial class BrewingListViewModel : BaseViewModel
             var dbBrews = await brewDatabase.GetFermentingBrewsAsync();
             foreach (var brew in dbBrews)
             {
-                brew.DaysFermenting = Math.Abs((DateTime.Today - brew.StartDate).TotalDays);
+                brew.DaysFermenting = Math.Abs((DateTime.Today.Date - brew.StartDate.Date).TotalDays);
                 BrewingList.Add(brew);
             }
         }
