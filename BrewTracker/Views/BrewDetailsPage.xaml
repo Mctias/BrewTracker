@@ -40,7 +40,7 @@
                        FontSize="Small"/>
                 <Label Text="{Binding Brew.Subtype}"
                        FontSize="Small"/>
-                <Label Text="{Binding Brew.StartDate, StringFormat='Started brewing: {0}'}"
+                <Label Text="{Binding Brew.StartDate, StringFormat='Started fermantation: {0}'}"
                        FontSize="Small"/>
                 <Label Text="{Binding Brew.DaysFermenting, StringFormat='Days fermenting: {0}'}"
                        FontSize="Small"/>
